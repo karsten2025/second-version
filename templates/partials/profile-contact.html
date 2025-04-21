@@ -1,3 +1,19 @@
-<!-- profile-contact.html -->
-<h1 class="corinthiago">Contact</h1>
-<p class="profile-text">Coming soon – I look forward to connecting.</p>
+<section class="contact-container">
+  <h1 class="corinthiago">Contact</h1>
+
+  <p class="profile-text" style="text-align: center;">
+    Let’s get in touch – I look forward to hearing from you.
+  </p>
+
+  <div class="contact-options">
+    <a href="mailto:karsten.zenk@gmail.com" class="contact-button">✉ Send Email</a>
+    <a href="tel:+4916095000361" class="contact-button">📞 Call Me</a>
+  </div>
+
+  <form class="contact-form" action="mailto:karsten.zenk@gmail.com" method="POST" enctype="text/plain">
+    <input type="text" name="name" placeholder="Your name" required>
+    <input type="email" name="email" placeholder="Your email" required>
+    <textarea name="message" placeholder="Your message..." rows="5" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>

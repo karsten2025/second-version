@@ -1,12 +1,16 @@
 from flask import Flask, render_template, send_from_directory, jsonify, request
 import os
 
+from flask import Flask, render_template
+
 app = Flask(__name__)
 
-# Route für die Hauptseite
-@app.route("/")
-def index():
+@app.route('/')
+def home():
     return render_template("index.html")
+
+if __name__ == '__main__':
+    app.run()
 
 # Route zum Laden von Profil-Teilansichten (Partials)
 @app.route("/partials/<partial_name>")
@@ -27,5 +31,5 @@ def list_certificates(category):
         return jsonify(files)
     return jsonify([])
 
-if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+#if __name__ == "__main__":
+    #app.run(debug=True, port=5001)

@@ -1,0 +1,336 @@
+/* style.css */
+@font-face {
+  font-family: 'Corinthiago';
+  src: url('/static/fonts/Corinthiago.ttf') format('truetype');
+}
+
+:root {
+  --header-height: 300px;
+  --main-color: #333;
+  --accent-color: #c0392b;
+  --bg-light: #f5f5f5;
+  --font-main: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-main);
+  background: var(--bg-light);
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Header */
+.header {
+  position: relative;
+  height: var(--header-height);
+  width: 100%;
+  overflow: hidden;
+  background: black;
+}
+
+.slideshow {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.slide {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+.header-text {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+}
+
+.corinthiago {
+  font-family: 'Corinthiago', cursive;
+  font-size: 4rem;
+  margin: 0;
+}
+
+main {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Linke Navigation */
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  background-color: var(--main-color);
+  padding: 1rem;
+}
+
+.side-nav button {
+  background: white;
+  border: none;
+  margin: 5px 0;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.side-nav button:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+/* Vorschaufenster */
+.preview {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  position: relative;
+  overflow: auto;
+  padding: 1rem;
+  flex-direction: column;
+}
+/* Vorschaufenster optimieren */
+.preview > div {
+  padding-top: 2rem;      /* oben Abstand zur Überschrift */
+  padding-bottom: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  overflow-y: auto;
+  max-height: 100%;
+  box-sizing: border-box;
+}
+.preview h1.corinthiago {
+  text-align: center;
+  font-size: 2.8rem;      /* passe bei Bedarf die Größe an */
+  white-space: nowrap;  /* zwingt einzeilige Darstellung */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 1.5rem;
+}
+.preview img,
+.preview embed,
+.preview .profile-text,
+.preview .profile-preview > * {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  transition: opacity 0.3s ease;
+}
+
+.profile-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  text-align: justify;
+  color: #222;
+  max-width: 800px;
+}
+
+.profile-about,
+.profile-journey,
+.profile-education,
+.profile-skills,
+.profile-memberships,
+.profile-quote,
+.profile-contact {
+  display: none;
+}
+
+/* rechte Navigation */
+.pfeil-titel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.titel-box {
+  background-color: white;
+  border: 2px solid #333;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.dreieck {
+  width: 0;
+  height: 0;
+  border-left: 2.5rem solid transparent;
+  border-right: 2.5rem solid transparent;
+  border-top: 1rem solid white;
+}
+
+.bottom-nav {
+  width: 250px;
+  background-color: var(--main-color);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow-y: auto;
+}
+
+.accordion-item {
+  background: white;
+  padding: 0.625rem;
+  cursor: pointer;
+  font-weight: bold;
+  border: 1px solid #ddd;
+  text-align: center;
+  position: relative;
+}
+
+.accordion-item:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+.accordion-content {
+  display: none;
+  flex-direction: column;
+  background: #fff;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  margin-top: -0.5rem;
+  z-index: 10;
+}
+
+.accordion-item:focus-within + .accordion-content,
+.accordion-item:hover + .accordion-content,
+.accordion-content:hover {
+  display: flex;
+}
+
+.accordion-entry {
+  font-size: 0.9rem;
+  color: #222;
+  padding: 6px 8px;
+  margin: 2px 0;
+  background: #f0f0f0;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.accordion-entry:hover {
+  background-color: var(--accent-color);
+  color: white;
+}
+
+/* Soft Divider */
+.soft-divider {
+  height: 2px;
+  width: 80%;
+  margin: 2rem auto;
+  background:linear-gradient(to right, transparent, var(--accent-color), transparent);
+  border-radius: 2px;
+  opacity: 0.6;
+}
+.contact-container {
+  text-align: center;
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+}
+
+.contact-options {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.contact-button {
+  background: var(--accent-color);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.contact-button:hover {
+  background: #a93226;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  width: 100%;
+}
+
+.contact-form button {
+  background: var(--main-color);
+  color: white;
+  border: none;
+  padding: 0.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+}
+
+.contact-form button:hover {
+  background: var(--accent-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+  }
+
+  .side-nav,
+  .bottom-nav {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .accordion-item {
+    width: 48%;
+  }
+
+  .accordion-content {
+    position: static;
+    width: 100%;
+  }
+}

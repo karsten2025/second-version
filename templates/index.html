@@ -1,12 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <title>Karsten Zenk Portfolio</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mein Portfolio</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Corinthia&display=swap" rel="stylesheet" />
+  <script defer src="{{ url_for('static', filename='js/script.js') }}"></script>
 </head>
 <body>
-  <h1>Willkommen auf meiner Website!</h1>
-  <p>Dies ist die zweite Version meines Portfolios.</p>
+  <header class="header">
+    <div class="slideshow">
+      <img src="{{ url_for('static', filename='images/header1.jpg') }}" class="slide active" />
+      <img src="{{ url_for('static', filename='images/header2.jpg') }}" class="slide" />
+      <img src="{{ url_for('static', filename='images/header3.jpg') }}" class="slide" />
+    </div>
+    <div class="header-text">
+  <header id="header-area">
+      <h1 class="corinthiago">Karsten Zenk</h1>
+      <p>Thank you for your kind attention and thoughtful presence</p>
+      <p>Welcome – this portfolio is here for you to explore, reflect, and connect</p>
+    </div>
+  </header>
+
+  <main>
+    <!-- Linke Navigation -->
+    <nav class="side-nav">
+      <button data-content="about">About Me / Profile</button>
+      <button data-content="journey">Professional Journey / Career Path</button>
+      <button data-content="education">Education</button>
+      <button data-content="skills">Skills</button>
+      <button data-content="memberships">Professional Memberships</button>
+      <button data-content="quote">Quote / Personal Motto</button>
+      <button data-content="contact">Contact</button>
+    </nav>
+
+    <!-- Vorschaufenster -->
+    <section class="preview" id="preview">
+      <img src="{{ url_for('static', filename='images/karsten-profile.jpg') }}" alt="Profilbild" />
+
+      {% for section in ['about', 'journey', 'education', 'skills', 'memberships', 'quote', 'contact'] %}
+        <div class="profile-{{ section }}" style="display: none;">
+          {% include 'partials/profile-' ~ section ~ '.html' %}
+        </div>
+      {% endfor %}
+    </section>
+
+    <!-- Rechte Navigation (Accordion) -->
+    <nav class="bottom-nav">
+      <div class="pfeil-titel">
+        <div class="titel-box">Maps – Not Territories</div>
+        <div class="dreieck"></div>
+      </div>
+      <div class="accordion-item" data-category="people_teams">People & Teams</div>
+      <div class="accordion-item" data-category="economics_law">Economics & Law</div>
+      <div class="accordion-item" data-category="strategic">Strategic, Tactical, Operational</div>
+      <div class="accordion-item" data-category="process_quality">Process & Quality</div>
+      <div class="accordion-item" data-category="training">Professional Training</div>
+      <div class="accordion-content" id="accordion-content"></div>
+    </nav>
+  </main>
+<script>
+  const header = document.getElementById('header-area');
+  const preview = document.getElementById('preview');
+
+  function showDefaultProfile() {
+    fetch('/static/templates/default-profile.html')
+      .then(response => response.text())
+      .then(html => {
+        preview.innerHTML = html;
+      });
+  }
+
+  header.addEventListener('mouseenter', () => {
+    showDefaultProfile();
+  });
+</script>
 </body>
 </html>

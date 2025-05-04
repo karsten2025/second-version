@@ -1,13 +1,4 @@
 // script.js
-
-const loadPanzoom = () => {
-  const script = document.createElement("script");
-  script.src = "https://unpkg.com/@panzoom/panzoom@9.4.0/dist/panzoom.min.js";
-  script.onload = () => console.log("Panzoom geladen");
-  document.head.appendChild(script);
-};
-loadPanzoom();
-
 document.addEventListener("DOMContentLoaded", function () {
   const preview = document.getElementById("preview");
   let previewHovered = false;
@@ -15,11 +6,26 @@ document.addEventListener("DOMContentLoaded", function () {
   let activeContent = null;
   let zoomLevel = 1.0;
 
+
   preview.addEventListener("mouseenter", () => previewHovered = true);
   preview.addEventListener("mouseleave", () => {
     previewHovered = false;
     maybeRemoveAccordion();
   });
+  // 5. Slideshow (optional)
+  const slides = document.querySelectorAll(".slideshow .slide");
+  let slideIndex = 0;
+
+  function showNextSlide() {
+    slides.forEach(s => s.classList.remove("active"));
+    slideIndex = (slideIndex + 1) % slides.length;
+    slides[slideIndex].classList.add("active");
+  }
+
+  if (slides.length > 0) {
+    slides[0].classList.add("active");
+    setInterval(showNextSlide, 4000);
+  }
 
   // Zoom-Steuerung
   const zoomControls = document.createElement("div");

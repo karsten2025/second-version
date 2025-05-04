@@ -30,12 +30,12 @@
   <main>
     <!-- Linke Navigation -->
     <nav class="side-nav">
-      <button data-content="about">About Me / Profile</button>
-      <button data-content="journey">Professional Journey / Career Path</button>
+      <button data-content="about">About Me</button>
+      <button data-content="journey">Professional Journey</button>
       <button data-content="education">Education</button>
       <button data-content="skills">Skills</button>
-      <button data-content="memberships">Professional Memberships</button>
-      <button data-content="quote">Quote / Personal Motto</button>
+      <button data-content="memberships">Memberships</button>
+      <button data-content="quote">Personal Motto</button>
       <button data-content="contact">Contact</button>
     </nav>
 
@@ -64,21 +64,10 @@
       <div class="accordion-content" id="accordion-content"></div>
     </nav>
   </main>
-<script>
-  const header = document.getElementById('header-area');
-  const preview = document.getElementById('preview');
-
-  function showDefaultProfile() {
-    fetch('/partials/default-profile')
-      .then(response => response.text())
-      .then(html => {
-        preview.innerHTML = html;
-      });
-  }
-
-  header.addEventListener('mouseenter', () => {
-    showDefaultProfile();
-  });
-</script>
+<!-- Hier startet die Fußzeile -->
+   <footer id="footer">
+     <p>&copy; 2025 Karsten Zenk – All rights reserved.</p>
+   </footer>
+<!-- Hier endet die Fußzeile -->
 </body>
 </html>
